@@ -7,6 +7,8 @@ var currentPlayerRolls = []
 
 var currentPlayer = 1
 var allPlayersScore = []
+var playerOneScores = []
+var playerTwoScores = []
 
 var rollDice = function (){
   var randomDecimal = Math.random() * 6
@@ -39,6 +41,7 @@ var getPlayerScore = function (playerInput){
 
     allPlayersScore.push(currentPlayerScore)
     currentPlayerRolls = []
+
     return myOutputValue = 'Player ' + currentPlayer + ', your chosen value is: ' + currentPlayerScore + '.'
 }
 
@@ -54,9 +57,25 @@ var comparePlayersScore = function (){
 
     if (allPlayersScore[0] == allPlayersScore [1]){
       compareMessage = compareMessage + "<br><br> It's a Tie!"
-  }
+  };
+    playerOneScores.push(allPlayersScore[0])
+    playerTwoScores.push(allPlayersScore[1])
+
+    console.log (playerOneScores[0])
+    console.log (playerTwoScores[0])
   return compareMessage
 }
+
+var totalScores = function (){
+  var sumOfPlayer1 = 0
+  var sumOfPlayer2 = 0
+  var myOutputValue = ''
+
+  for (var i = 0; i< playerOneScores.length ; i++){var sumOfPlayer1 = sumOfPlayer1 + playerOneScores[i]}
+  for (var i = 0; i< playerTwoScores.length ; i++){var sumOfPlayer2 = sumOfPlayer2 + playerTwoScores[i]}
+
+  return myOutputValue = '<br><br>Player 1 has a total of ' + sumOfPlayer1 + ' throughout the rounds. <br> <br> Player 2 has a total of ' + sumOfPlayer2 + ' throughout the rounds.'
+  }
 
 var resetGame = function (){
   currentPlayer = 1;
@@ -89,8 +108,8 @@ console.log (currentPlayer)
     
   }
   if (gameState == 'gameCompareScores'){
-    myOutputValue = comparePlayersScore();
+    myOutputValue = comparePlayersScore()+ totalScores();
     resetGame();
-    return myOutputValue
+    return myOutputValue 
 }
 }
