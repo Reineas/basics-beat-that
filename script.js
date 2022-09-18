@@ -27,7 +27,7 @@ while (counter <2 ){
 
 var getPlayerScore = function (playerInput){
   var currentPlayerScore = ''
-  if (playerInput != 1 && playerInput != 2){
+  if (playerInput != 1 && playerInput != 2){ gameState = 'gameChooseDice' ;
       return myOutputValue = 'Error. Dice 1: ' + currentPlayerRolls [0] + '<br>Dice 2: ' + currentPlayerRolls [1] + '.'}
       console.log (gameState)
    
@@ -70,12 +70,19 @@ var totalScores = function (){
   var sumOfPlayer1 = 0
   var sumOfPlayer2 = 0
   var myOutputValue = ''
+  var leaderboardScores = ''
 
   for (var i = 0; i< playerOneScores.length ; i++){var sumOfPlayer1 = sumOfPlayer1 + playerOneScores[i]}
-  for (var i = 0; i< playerTwoScores.length ; i++){var sumOfPlayer2 = sumOfPlayer2 + playerTwoScores[i]}
+  for (var i = 0; i< playerTwoScores.length ; i++){var sumOfPlayer2 = sumOfPlayer2 + playerTwoScores[i]};
 
-  return myOutputValue = '<br><br>Player 1 has a total of ' + sumOfPlayer1 + ' throughout the rounds. <br> <br> Player 2 has a total of ' + sumOfPlayer2 + ' throughout the rounds.'
+  if (sumOfPlayer1 > sumOfPlayer2 || sumOfPlayer1 == sumOfPlayer2){
+    var leaderboardScores = '<br><br>Leaderboard: <br><br>Player 1: ' + sumOfPlayer1 + '<br> Player 2: ' + sumOfPlayer2};
+
+  if (sumOfPlayer1 < sumOfPlayer2){var leaderboardScores = '<br><br>Leaderboard: <br><br>Player 2: ' + sumOfPlayer2 + '<br> Player 1: ' + sumOfPlayer1};
+
+  return myOutputValue = '<br><br>Player 1 has a total of ' + sumOfPlayer1 + ' throughout the rounds. <br> <br> Player 2 has a total of ' + sumOfPlayer2 + ' throughout the rounds.' + leaderboardScores;
   }
+
 
 var resetGame = function (){
   currentPlayer = 1;
